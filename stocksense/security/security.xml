@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data nodry="1">
+        <record id="module_category_stocksense" model="ir.module.category">
+            <field name="name">StockSense Inventory</field>
+            <field name="description">Access rights for StockSense Inventory Management System</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Warehouse Staff Group -->
+        <record id="group_stocksense_user" model="res.groups">
+            <field name="name">Warehouse Staff</field>
+            <field name="category_id" ref="module_category_stocksense"/>
+            <field name="comment">Warehouse staff can perform transfers, receipts, deliveries, and adjustments.</field>
+        </record>
+
+        <!-- Inventory Manager Group -->
+        <record id="group_stocksense_manager" model="res.groups">
+            <field name="name">Inventory Manager</field>
+            <field name="category_id" ref="module_category_stocksense"/>
+            <field name="implied_ids" eval="[(4, ref('group_stocksense_user'))]"/>
+            <field name="comment">Inventory managers have full access to warehouses, products, configurations, and ledger reports.</field>
+        </record>
+    </data>
+</odoo>
